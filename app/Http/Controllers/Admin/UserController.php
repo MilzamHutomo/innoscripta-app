@@ -42,7 +42,16 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $roles = User::TYPE_AVAILABLE;
+
+        $data = [
+            'roles',
+            'user'
+        ];
+
+        return Inertia::render('Admin/Users/Show', compact($data));
     }
 
     /**
@@ -58,7 +67,11 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->update($request->all());
+
+        return redirect()->back();
     }
 
     /**

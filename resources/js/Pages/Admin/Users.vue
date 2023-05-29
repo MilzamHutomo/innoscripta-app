@@ -1,5 +1,5 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 // Layouts
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -21,13 +21,17 @@ import Card from '@/Components/Card.vue';
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex flex-col gap-3">
-                    <Card 
+                <div class="flex flex-col gap-3 items-center">
+                    <Link 
                         v-for="user in $page.props.users"
-                        class="flex gap-3 justify-between">
-                        <p>{{ user.name }}</p>
-                        <p>{{ user.email }}</p>
-                    </Card>
+                        class="cursor-pointer w-full md:w-3/4 lg:w-1/2"
+                        :href="route('admin.user.show', {user: user.id})">
+                        <Card
+                            class="flex gap-3 justify-between hover:bg-gray-200">
+                            <p>{{ user.name }}</p>
+                            <p>{{ user.email }}</p>
+                        </Card>
+                    </Link>
                 </div>
             </div>
         </div>
