@@ -13,7 +13,13 @@ const router = createRouter({
                 },
                 {
                     path:'/manage-user',name:'user', component: () => import('../views/user/User.vue')
-                }
+                },
+                {
+                    path:'/projects',name:'projects', component: () => import('../views/projects/index.vue')
+                },
+                {
+                    path:'/todo',name:'todo', component: () => import('../views/kanban/index.vue')
+                },
             ],
             meta : {
                 requiresAuth:true

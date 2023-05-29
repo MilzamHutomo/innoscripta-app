@@ -85,8 +85,8 @@ export default {
           label: "Logout",
           icon: "heroicons-outline:login",
           link: () => {
-            this.$router.push("/");
-            localStorage.removeItem("activeUser");
+            localStorage.removeItem('token');
+            this.$router.push("/login");
           },
         },
       ],
