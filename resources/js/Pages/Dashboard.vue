@@ -18,9 +18,9 @@ import Card from '@/Components/Card.vue';
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <Card>
-                    <div class="text-gray-900">You're logged in!</div>
-                </Card>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    
+                </div>
             </div>
         </div>
     </AuthenticatedLayout>
