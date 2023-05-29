@@ -63,8 +63,29 @@ class User extends Authenticatable
     public const TYPE_MANAGER = 'MANAGER';
     public const TYPE_REPRESENTATIVE = 'REPRESENTATIVE';
 
+    public const TYPE_AVAILABLE = [
+        self::TYPE_ADMIN,
+        self::TYPE_MANAGER,
+        self::TYPE_REPRESENTATIVE
+    ];
+
+    public function templates()
+    {
+        return $this->hasMany(WorkflowTemplate::class);
+    }
+
     public function scopeNotAdmin($query)
     {
         return $query->whereIn('role', [self::TYPE_MANAGER, self::TYPE_REPRESENTATIVE]);
+    }
+
+    public function scopeManager($query)
+    {
+        return $query->where('role', self::TYPE_MANAGER);
+    }
+
+    public function scopeRepresentative($query)
+    {
+        return $query->where('role', self::TYPE_REPRESENTATIVE);
     }
 }

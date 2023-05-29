@@ -14,4 +14,9 @@ class WorkflowTemplate extends Model
         'name',
         'is_active'
     ];
+
+    public function boards()
+    {
+        return $this->hasMany(WorkflowBoard::class);
+    }
 }
