@@ -12,6 +12,11 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                'green': {
+                    'innoscripta': '#2596BE'
+                }
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
