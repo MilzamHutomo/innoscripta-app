@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\WorkflowTemplate;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,14 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('workflow_boards', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(WorkflowTemplate::class)->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('role', ['ADMIN', 'MANAGER', 'REPRESENTATIVE']);
-            $table->rememberToken();
+            $table->integer('order')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('workflow_boards');
     }
 };
