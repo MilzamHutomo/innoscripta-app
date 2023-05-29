@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -41,4 +42,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public const TYPE_ADMIN = 'ADMIN';
+    public const TYPE_MANAGER = 'MANAGER';
+    public const TYPE_REPRESENTATIVE = 'REPRESENTATIVE';
+
+    public function scopeNotAdmin($query)
+    {
+        return $query->whereIn('role', [self::TYPE_MANAGER, self::TYPE_REPRESENTATIVE]);
+    }
 }
