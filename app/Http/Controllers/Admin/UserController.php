@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -15,7 +16,9 @@ class UserController extends Controller
     {
         $users = User::notAdmin()->get();
 
-        dd($users);
+        auth()->user()->append('is_admin')->toArray();
+
+        return Inertia::render('Admin/Users', compact('users'));
     }
 
     /**
