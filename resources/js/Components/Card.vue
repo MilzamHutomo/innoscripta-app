@@ -1,9 +1,14 @@
 <script setup>
-
+    defineProps({
+        backgroundColor: { 
+            type: String,
+            default: 'bg-white'
+        }
+    })
 </script>
 
 <template>
-    <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="p-6 overflow-hidden shadow-sm sm:rounded-lg" :class="backgroundColor">
         <slot />
     </div>
 </template>
