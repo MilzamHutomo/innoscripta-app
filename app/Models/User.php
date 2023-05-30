@@ -74,6 +74,16 @@ class User extends Authenticatable
         return $this->hasMany(WorkflowTemplate::class);
     }
 
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('role', self::TYPE_ADMIN);
+    }
+
     public function scopeNotAdmin($query)
     {
         return $query->whereIn('role', [self::TYPE_MANAGER, self::TYPE_REPRESENTATIVE]);

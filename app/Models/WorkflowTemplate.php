@@ -19,4 +19,14 @@ class WorkflowTemplate extends Model
     {
         return $this->hasMany(WorkflowBoard::class);
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', TRUE);
+    }
 }
