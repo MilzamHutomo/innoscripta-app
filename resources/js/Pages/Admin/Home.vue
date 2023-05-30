@@ -4,11 +4,11 @@ import { ref } from 'vue';
 
 // Layouts
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import ModalWorkflowTemplate from './Home/ModalWorkflowTemplate.vue';
 
 // Components
 import Card from '@/Components/Card.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import ModalWorkflowTemplate from './Home/ModalWorkflowTemplate.vue';
 
 const props = defineProps({
     workflowTemplates: { type: Object }
@@ -47,7 +47,7 @@ const openWorkflowTemplateCreator = () => {
                         </Card>
                     </div>
 
-                    <Card class="flex justify-between bg-green-innoscripta text-center text-white font-extrabold text-2xl">
+                    <Card class="flex justify-between text-green-innoscripta text-center font-extrabold text-2xl">
                         <p>WORKFLOW TEMPLATES</p>
                         <PrimaryButton v-on:click="openWorkflowTemplateCreator">
                             Create

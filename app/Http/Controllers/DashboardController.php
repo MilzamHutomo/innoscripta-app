@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\WorkflowTemplate;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -25,5 +25,26 @@ class DashboardController extends Controller
 
             return Inertia::render('Admin/Home', compact($data));
         }
+
+        $projects = auth()->user()->projects;
+        
+        $admins = User::admin()->get()->pluck('id');
+
+        $userIds = [...$admins, auth()->user()->id];
+
+        $workflowTemplates = WorkflowTemplate::with('boards:workflow_template_id,name')
+            ->whereIn('user_id', $userIds)
+            ->active()
+            ->get();
+
+        $data = [
+            'projects',
+            'workflowTemplates'
+        ];
+
+        return Inertia::render(
+            'Dashboard', 
+            compact($data)
+        );
     }
 }
