@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\WorkflowTemplateController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('workflow-template', WorkflowTemplateController::class)
         ->only('store');
+
+    Route::resource('project', ProjectController::class)
+        ->only('show', 'store');
 
     // Route for Profile Page
     Route::get('profile', [ProfileController::class, 'edit'])
